@@ -1,0 +1,27 @@
+ion-accordion {
+    margin: 0 auto;
+  }
+  
+  ion-accordion.accordion-expanding,
+  ion-accordion.accordion-expanded {
+    width: calc(100% - 32px);
+    margin: 16px auto;
+  }
+
+  ion-fab-button{
+    height: 70px;
+    width: 70px;
+  }
+  
+  .cart-icon {
+    font-size: 50px;
+  }
+  .cart-length {
+     position: absolute;
+     top : 18px;
+     left: 25px;
+     font-weight: 600;
+     font-size: 1em;
+     min-width: 25px;
+     z-index: 10;
+   }

@@ -1,0 +1,51 @@
+
+<ion-app style=" background-color:#ffe5d9">  
+  <ion-header>  
+    <ion-toolbar color="warning">  
+      <ion-buttons slot="start">  
+        <ion-menu-button></ion-menu-button>   
+      </ion-buttons>  
+      <ion-title  style="font-weight:bold;position:center">  
+        LeBleDor
+      </ion-title>  
+    </ion-toolbar>   
+  </ion-header>
+  <ion-menu  menuId="first" contentId="content">  
+    <ion-header>  
+      <ion-toolbar color="warning">  
+        <ion-title>Content</ion-title>  
+      </ion-toolbar>   
+    </ion-header>  
+    <ion-content>  
+      <ion-list *ngFor="let pages of navigate">  
+        <ion-menu-toggle auto-hide="true">  
+          <ion-item [routerLink]="pages.url" routerDirection="forward">  
+            <ion-icon [name]="pages.icon" slot="start"></ion-icon>  
+              {{pages.title}}   
+          </ion-item>  
+        </ion-menu-toggle>  
+      </ion-list>  
+    </ion-content>   
+  </ion-menu>  
+  <ion-router-outlet id="content"></ion-router-outlet>  
+  <ion-tabs>
+
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="acceuil">
+        <ion-icon name="home"></ion-icon>
+        <ion-label style="font-weight:bold">Acceuil</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="produit">
+        <ion-icon name="ellipse"></ion-icon>
+        <ion-label style="font-weight:bold">Produit</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="Panier">
+        <ion-icon name="cart"></ion-icon>
+        <ion-label style="font-weight:bold">Panier</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  
+  </ion-tabs>
+</ion-app> 

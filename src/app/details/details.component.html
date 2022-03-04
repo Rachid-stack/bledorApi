@@ -1,0 +1,58 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="dismiss()">
+      <ion-back-button defaultHref=""  color="warning"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="warning">Mon Panier</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  
+  <ion-grid>
+  <ion-row  size="6">
+    <ion-card style="background-color:#faedcd">
+      <ion-card-content *ngFor="let p of cart">
+        <ion-row>
+           <ion-col></ion-col>
+           <ion-col></ion-col>
+           <ion-col>
+              <ion-button color="danger" fill="clear" (click)=" removeCartItem(p)">
+                  <ion-icon name="trash" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="hidden" name="idProduit" id="{{'idProd_' + p.id}}" value="{{ p.id}}"></ion-input>
+            <ion-input type="hidden" name="idProduit" id="{{'prixTotal_' + p.id}}" value="{{p.nombre * p.cout_unitaire}}"></ion-input>
+            <img style="height: 50px; width: 100px" src = "../../assets/images/fastfood.jpg" class="card-img-top" alt="...">
+          </ion-col>
+          <ion-col>
+            <h6 style="font-size:15px;font-weight:bold">{{p.libel_produit}}</h6>
+          </ion-col>
+           <ion-col>
+              <ion-badge color="secondary" style="font-weight: bold;">Prix:{{p.cout_unitaire}}FCFA</ion-badge>
+           </ion-col>
+        </ion-row>
+        <ion-row>
+           <ion-col>
+            <ion-input type="text" name="quantite" id="{{'quantite_' + p.id}}" value="{{p.nombre}}"></ion-input>
+           </ion-col>
+           <ion-col>
+            <ion-button color="primary" fill="clear" (click)="decreaseCartItem(p)">
+              <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
+            </ion-button>
+           </ion-col>
+           <ion-col>
+            <ion-button color="primary" fill="clear" (click)="increaseCartItem(p)">
+              <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+            </ion-button>
+           </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+  <ion-button expand="block" style="margin-top: 20px;" color="warning" (click)="showPrompt()">Commander
+  </ion-button>
+</ion-grid>
+</ion-content>
