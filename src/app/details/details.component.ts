@@ -9,18 +9,25 @@ import { Device } from '@ionic-native/device/ngx';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser/ngx';
 import { ModalController } from '@ionic/angular';
 import { CommerceService, Product } from '../services/commerce.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+interface dataLiv {
+  id: number;
+  nom: string;
+}
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  cart: Product[] = [];
+  cart= [];
   receivedData: any;
   selectedMenuItems: MenuItemCart[] = [];
   dataA=[];
-  idL=[];
-
+  idL:any;
+  dataC: any;
+  dataLv: Observable<dataLiv>;
   constructor(
     public alertCtrl: AlertController,
     private route: ActivatedRoute, public modalController: ModalController,private router: Router,
@@ -28,11 +35,7 @@ export class DetailsComponent implements OnInit {
     private callNumber: CallNumber,
     private device: Device,
     public toastController: ToastController,
-    private iab: InAppBrowser, private commerceService: CommerceService
-  ) {
-  
-    
-  }
+    private iab: InAppBrowser, private commerceService: CommerceService) {}
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
     this.cart = this.commerceService.getCart();
@@ -69,22 +72,18 @@ export class DetailsComponent implements OnInit {
           text: 'Cancel',
           handler: data => {
             console.log(data);
-            //this.addCommande();
+            this.dataC=data;
           }
         },
         {
           text: 'Save',
           handler: data => {
-            console.log(data);
-            this.commerceService.postLivraison(data).subscribe(
-              response => {
-                console.log(response);
-              },
-              error => {
-                console.log(error);
-              });
-              this.addCommande();
+              this.addLivraison(data);
+              this.dismiss();
+              this.router.navigate(['/produit']);
+              this.presentToast();
           }
+
         }
       ]
     });
@@ -93,70 +92,72 @@ export class DetailsComponent implements OnInit {
 
 
 
-  addToCart(menuItemSelected: { id: any; }) {
+  addToCart(menuItemSelected: { id: any; }){
     this.receivedData.offers.forEach((element: { id: any; quantity: number; }) => {
       if (element.id === menuItemSelected.id) {
         element.quantity = element.quantity + 1;
       }
     });
   }
-  addCommande(){
-   
-      this.cart.forEach(element => {
-        const quantite=(document.getElementById('quantite_'+element.id) as HTMLInputElement).value;
-        const prixT=(document.getElementById('prixTotal_'+element.id) as HTMLInputElement).value;
-        const data_={id_prods:element.id,prix_prod:element.cout_unitaire,quantite:quantite,prix_total:prixT};
-        this.dataA.push(data_);
-      });
+  addCommande(_idL){
+    this.cart.forEach(element => {
+      const quantite=(document.getElementById('quantite_'+element.id) as HTMLInputElement).value;
+      const quantites=parseInt(quantite);
+      const prixTotal=quantites*element.prix;
+      const data_={id_prods:element.id,id_livraison:_idL,prix_prod:element.prix,quantite:quantite,prix_total:prixTotal};
+      this.dataA.push(data_);
+    }); 
     let i=0;
     this.dataA.forEach(element => {
       this.commerceService.postCommande(this.dataA[i])
       .subscribe(
         response => {
           console.log(response);
-          this.dismiss()
-          this.presentToast();
         },
         error => {
           console.log(error);
         });
-        i++;
+        i ++;
     });
-  
   }
-  removeFromCart(menuItemSelected) {
-    this.receivedData.offers.forEach(element => {
-      if (element.id === menuItemSelected.id) {
+  addLivraison(data: any){
+    this.commerceService.postLivraison(data).subscribe(
+      (response:any)=> {
+       console.log(response);
+       this.idL=response.id; 
+       this.addCommande(response.id);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+  removeFromCart(menuItemSelected){
+    this.receivedData.offers.forEach(element =>{
+      if (element.id === menuItemSelected.id){
         element.quantity = 0;
       }
     });
   }
-  dismiss() {
+  dismiss(){
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
       'dismissed': true
     });
   }
-
-
-  decreaseCartItem(product) {
+  decreaseCartItem(product){
     this.commerceService.decreaseProduct(product);
-      }
-    
-      increaseCartItem(product) {
+  }
+  increaseCartItem(product){
         this.commerceService.addProduct(product);
-      }
-    
-      removeCartItem(product) {
+  }
+  removeCartItem(product){
         this.commerceService.removeProduct(product);
-      }
+  }
+  getTotal(){
+        return this.cart.reduce((i, j) => i + j.prix * j.nombre, 0);
+  }
+  chekout(){
     
-      getTotal() {
-        return this.cart.reduce((i, j) => i + j.cout_unitaire * j.nombre, 0 );
-      }
-    
-      chekout() {
-    
-      }
+  }
 }

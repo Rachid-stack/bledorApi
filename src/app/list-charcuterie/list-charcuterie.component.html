@@ -1,0 +1,50 @@
+<ion-content [fullscreen]="true" style="padding-bottom:500px">
+    <ion-toolbar color="dark">
+        <ion-buttons slot="primary">
+            <ion-button color="danger">
+                <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Charcuterie</ion-title>
+        <ion-buttons slot="secondary">
+            <ion-button routerLink="/produit">
+                <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>produit
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-searchbar placeholder="chercer un produit"></ion-searchbar>
+    <!-- Checkboxes in a List -->
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="padding-top:500px">
+        <ion-fab-button color="warning" #cart (click)="presentModal()">
+            {{ cartItemCount | async }}
+            <ion-icon name="cart" class="cart-icon"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" *ngFor="let item of produit">
+                <ion-card style="background-color:#ffffff">
+                    <ion-card-header>
+                        <ion-row>
+                            <h6 style="font-size:10px;font-weight:bold">{{item.nom}} </h6>
+                        </ion-row>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-row>
+                            <ion-col>
+                            </ion-col>
+                            <ion-col>
+                                <ion-badge color="secondary" style="font-weight: bold;">{{item.prix}}F</ion-badge>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button color="danger" (click)="addToCart(item)" style="padding-left:20px">
+                                    <ion-icon name="add"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

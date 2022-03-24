@@ -1,79 +1,122 @@
-
-  
 <ion-content [fullscreen]="true">
-  <ion-toolbar  style="padding-top:65px" mode="ios">
-    <ion-title size="large" >Nos Produits</ion-title>
-  </ion-toolbar>
-  <ion-row>
-    <ion-col>
-      <ion-card mode="ios" routerLink="/listPatisserie" style="background-color: #fefae0;">
-        <ion-card-header>
-          <ion-card-subtitle><img style="height: 200px; width: 500px" src = "../../assets/images/patisserie.jpg" class="card-img-top" alt="..."></ion-card-subtitle>
-          <ion-card-title color="warning">Patisserie</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card mode="ios"   routerLink="/listFastFood" style="background-color: #fefae0;">
-        <ion-card-header>
-          <ion-card-subtitle><img style="height: 200px; width: 500px" src = "../../assets/images/fastfood2.jpg" class="card-img-top" alt="..."></ion-card-subtitle>
-          <ion-card-title color="warning">FastFood</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-   <ion-row>
-      <ion-col>
-        <ion-card mode="ios"  routerLink="/listVienoiserie" style="background-color: #fefae0;">
-          <ion-card-header>
-            <ion-card-subtitle><img style="height: 200px; width: 500px" src = "../../assets/images/vernoiserie.jpeg" class="card-img-top" alt="..."></ion-card-subtitle>
-            <ion-card-title color="warning">Vernoiserie</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card mode="ios" routerLink="/listBoulangerie" style="background-color: #fefae0;">
-          <ion-card-header>
-            <ion-card-subtitle><img style="height: 200px; width: 500px" src = "../../assets/images/accueil2.jpg" class="card-img-top" alt="..."></ion-card-subtitle>
-            <ion-card-title color="warning">Boulangerie</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-   </ion-row>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="primary">
+            <ion-button color="warning">
+                <ion-icon slot="icon-only" name="bag"></ion-icon>
+                <ion-badge color="danger"> {{ cartItemCount | async }}</ion-badge>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Produits</ion-title>
+        <ion-buttons slot="secondary">
+            <ion-button routerLink="/">
+                <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>Acceuil
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
     <ion-row>
-      <ion-col>
-        <ion-card mode="ios"   routerLink="/listGlacier" style="background-color: #fefae0;">
-          <ion-card-header>
-            <ion-card-subtitle><img style="height: 200px; width: 500px" src = "../../assets/images/glacier.jpg" class="card-img-top" alt="..."></ion-card-subtitle>
-            <ion-card-title color="warning">Glacier</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listPatisserie" style="background-color: #ffffff;font-size:15px">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-croissant-100.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Patisserie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listFastFood" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-fastfood-58.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">FastFood</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
     </ion-row>
-  </ion-content>
+    <ion-row>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listVienoiserie" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-croissant-96 (1).png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Vernoiserie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listBoulangerie" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-baguette-64.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Boulangerie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listGlacier" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-cornet-de-glace-64.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Glacier</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listBoisson" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-soda-64.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Boissson</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listCharcuterie" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-carré-d'agneau-64.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Charcuterie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listSalade" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-salade-96.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Salade</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>

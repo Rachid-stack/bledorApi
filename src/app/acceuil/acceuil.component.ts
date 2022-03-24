@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { AppComponent } from '../app.component';
+import {CommerceService} from '../services/commerce.service';
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-acceuil',
   templateUrl: './acceuil.component.html',
@@ -11,10 +14,18 @@ export class AcceuilComponent implements OnInit {
     initialSlide: 1,
     speed: 400,
   };
-  constructor() { }
+  cartItemCount: any;
+  constructor( public http: HttpClient, private commerceService: CommerceService,) { }
   slidesDidLoad(slides: IonSlides): void {
     slides.startAutoplay();
   }
-  ngOnInit() {}
+  slideOptsOne = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay:true
+   };
+  ngOnInit() {
+    this.cartItemCount = this.commerceService.getCartItemCount()
+  }
 
 }

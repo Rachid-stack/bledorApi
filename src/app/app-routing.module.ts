@@ -4,6 +4,9 @@ import { DetailsComponent } from './details/details.component';
 import { ListPatisserieComponent } from './list-patisserie/list-patisserie.component';
 import { ListFastFoodComponent } from './list-fast-food/list-fast-food.component';
 import { ListGlacierComponent } from './list-glacier/list-glacier.component';
+import { ListBoissonComponent } from './list-boisson/list-boisson.component';
+import { ListSaladeComponent } from './list-salade/list-salade.component';
+import { ListCharcuterieComponent } from './list-charcuterie/list-charcuterie.component';
 import { ListBoulangerieComponent } from './list-boulangerie/list-boulangerie.component';
 import { ListVienoiserieComponent } from './list-vienoiserie/list-vienoiserie.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
@@ -14,6 +17,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/acceuil', pathMatch: 'full' },
   
   { path: 'listFastFood', component: ListFastFoodComponent },
+  { path: 'listBoisson', component: ListBoissonComponent },
+  { path: 'listSalade', component: ListSaladeComponent },
+  { path: 'listCharcuterie', component: ListCharcuterieComponent },
   { path: 'listGlacier', component: ListGlacierComponent },
   { path: 'listVienoiserie', component: ListVienoiserieComponent },
   { path: 'listBoulangerie', component: ListBoulangerieComponent },

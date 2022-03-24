@@ -1,52 +1,114 @@
-<ion-content >
-  <ion-toolbar  style="padding-top:60px" mode="ios">
-    <ion-title size="large" color="warning">Actualité</ion-title>
-  </ion-toolbar>
-  <ion-slides [options]="slideOptions" pager="true" #slider>
-      <ion-slide >
-        <ion-card  style="padding-top:100px ;background-color: #ffd7ba;">
-          <ion-item>
-            <ion-icon name="pin" slot="start"></ion-icon>
-            <ion-label>ion-item in a card, icon left, button right</ion-label>
-            <ion-button fill="outline" slot="end" color="warning">Voir</ion-button>
-          </ion-item>
-        
-          <ion-card-content >
-            This is content, without any paragraph or header tags,
-            within an ion-card-content element.
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    
-      <ion-slide >
-       
-        <ion-card  style="padding-top:100px;background-color: #84a59d;" >
-          <ion-item>
-            <ion-icon name="pin" slot="start"></ion-icon>
-            <ion-label>ion-item in a card, icon left, button right</ion-label>
-            <ion-button fill="outline" slot="end" color="warning">Voir</ion-button>
-          </ion-item>
-        
-          <ion-card-content >
-            This is content, without any paragraph or header tags,
-            within an ion-card-content element.
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    
-      <ion-slide >
-        <ion-card style="padding-top:100px;background-color:#f72585">
-          <ion-item>
-            <ion-icon name="pin" slot="start"></ion-icon>
-            <ion-label>ion-item in a card, icon left, button right</ion-label>
-            <ion-button fill="outline" slot="end" color="warning">Voir</ion-button>
-          </ion-item>
-        
-          <ion-card-content >
-            This is content, without any paragraph or header tags,
-            within an ion-card-content element.
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-  </ion-slides>
+<ion-content>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="primary">
+            <ion-button color="warning">
+                <ion-icon slot="icon-only" name="bag"></ion-icon>
+                <ion-badge color="danger"> {{ cartItemCount | async }}</ion-badge>
+            </ion-button>
+            <ion-button>
+                <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>LeBleDor</ion-title>
+        <ion-buttons>
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-row>
+        <!-- Searchbar with cancel button always shown -->
+        <ion-searchbar></ion-searchbar>
+
+        <h1 style="font-weight: bold;color: darkgray;padding-left: 13px;">Annonces</h1>
+
+        <ion-slides [options]="slideOptsOne" pager="true" #slider>
+            <ion-slide>
+                <ion-card style="padding-top:100px ;background-color: #ffffff;">
+                    <ion-card-content>
+                        This is content, without any paragraph or header tags, within an ion-card-content element.
+                        <ion-button color="danger">
+                            <ion-icon name="eye"></ion-icon>
+                        </ion-button>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card style="padding-top:100px;background-color: #ffffff;">
+                    <ion-card-content>
+                        This is content, without any paragraph or header tags, within an ion-card-content element.
+                        <ion-button color="danger">
+                            <ion-icon name="eye"></ion-icon>
+                        </ion-button>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card style="padding-top:100px;background-color:#ffffff;">
+                    <ion-card-content>
+                        This is content, without any paragraph or header tags, within an ion-card-content element.
+                        <ion-button color="danger">
+                            <ion-icon name="eye"></ion-icon>
+                        </ion-button>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </ion-row>
+    <ion-row>
+        <ion-col size="7">
+            <h1 style="font-weight: bold;color: darkgray;padding-left: 10px;">Populaires</h1>
+        </ion-col>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listPatisserie" style="background-color: #ffffff;font-size:15px">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-croissant-100.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Patisserie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listFastFood" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-fastfood-58.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">FastFood</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listVienoiserie" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-croissant-96 (1).png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Vernoiserie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size="6">
+            <ion-card mode="ios" routerLink="/listBoulangerie" style="background-color: #ffffff;">
+                <ion-card-header>
+                    <ion-card-subtitle><img style="height: 100px; width: 100px" src="../../assets/icon/icons8-baguette-64.png" class="card-img-top" alt="..."></ion-card-subtitle>
+                    <ion-card-title className="cardTitle" style="font-size:12px;text-align:center">Boulangerie</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
 </ion-content>

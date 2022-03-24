@@ -44,6 +44,7 @@
     "es6-promise-plugin": "^4.2.2",
     "mx.ferreyra.callnumber": "^0.0.2",
     "rxjs": "~6.5.1",
+    "swiper": "^8.0.7",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },

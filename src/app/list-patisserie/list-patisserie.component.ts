@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { DetailsProductPage } from '../details-product/details-product.page';
 import { ListFastFoodComponent } from '../list-fast-food/list-fast-food.component';
 import { DetailsComponent } from '../details/details.component';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-list-patisserie',
   templateUrl: './list-patisserie.component.html',
@@ -16,18 +17,9 @@ export class ListPatisserieComponent implements OnInit {
   produit :any;
   cartItemCount: BehaviorSubject<number>;
   cart: any;
-  constructor(public http: HttpClient,public modalController: ModalController, private commerceService: CommerceService,public routerOutlet: IonRouterOutlet) { }
 
-  ngOnInit() {  this.getProduitPatisserie();this.cart = this.commerceService.getCart(); this.cartItemCount = this.commerceService.getCartItemCount();}
-  getProduitPatisserie() {
-    this.commerceService.getProductPatisserie().subscribe(
-      data=>{
-      this.produit=data;
-      console.log(data);
-    },error=>{
-      console.log(error);
-    })
-  }
+  constructor(public http: HttpClient,public modalController: ModalController, private commerceService: CommerceService,public routerOutlet: IonRouterOutlet) { }
+  ngOnInit() { this.produit=JSON.parse(localStorage.getItem('dataPatisserie'));this.cart = this.commerceService.getCart(); this.cartItemCount = this.commerceService.getCartItemCount();}
   addToCart(product) {
     // this.animateCss('tada');
      this.commerceService.addProduct(product);
@@ -39,6 +31,8 @@ export class ListPatisserieComponent implements OnInit {
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl
     });
+
     return await modal.present();
   }
+
 }

@@ -6,6 +6,7 @@ import { IonRouterOutlet } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { DetailsProductPage } from '../details-product/details-product.page';
 import { DetailsComponent } from '../details/details.component';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-list-glacier',
   templateUrl: './list-glacier.component.html',
@@ -15,18 +16,12 @@ export class ListGlacierComponent implements OnInit {
   produit :any;
   cartItemCount: BehaviorSubject<number>;
   cart: any;
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+  }
   constructor(public http: HttpClient,public modalController: ModalController, private commerceService: CommerceService,public routerOutlet: IonRouterOutlet) { }
 
-  ngOnInit() {  this.getProduitFastFood();this.cart = this.commerceService.getCart(); this.cartItemCount = this.commerceService.getCartItemCount();}
-  getProduitFastFood() {
-    this.commerceService.getProductFastFood().subscribe(
-      data=>{
-      this.produit=data;
-      console.log(data);
-    },error=>{
-      console.log(error);
-    })
-  }
+  ngOnInit() {  this.produit=JSON.parse(localStorage.getItem('dataGlacier'));this.cart = this.commerceService.getCart(); this.cartItemCount = this.commerceService.getCartItemCount();}
   addToCart(product) {
     // this.animateCss('tada');
      this.commerceService.addProduct(product);

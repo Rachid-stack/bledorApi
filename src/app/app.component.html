@@ -1,51 +1,60 @@
+<ion-app style=" background-color:#ffe5d9">
 
-<ion-app style=" background-color:#ffe5d9">  
-  <ion-header>  
-    <ion-toolbar color="warning">  
-      <ion-buttons slot="start">  
-        <ion-menu-button></ion-menu-button>   
-      </ion-buttons>  
-      <ion-title  style="font-weight:bold;position:center">  
-        LeBleDor
-      </ion-title>  
-    </ion-toolbar>   
-  </ion-header>
-  <ion-menu  menuId="first" contentId="content">  
-    <ion-header>  
-      <ion-toolbar color="warning">  
-        <ion-title>Content</ion-title>  
-      </ion-toolbar>   
-    </ion-header>  
-    <ion-content>  
-      <ion-list *ngFor="let pages of navigate">  
-        <ion-menu-toggle auto-hide="true">  
-          <ion-item [routerLink]="pages.url" routerDirection="forward">  
-            <ion-icon [name]="pages.icon" slot="start"></ion-icon>  
-              {{pages.title}}   
-          </ion-item>  
-        </ion-menu-toggle>  
-      </ion-list>  
-    </ion-content>   
-  </ion-menu>  
-  <ion-router-outlet id="content"></ion-router-outlet>  
-  <ion-tabs>
+    <ion-menu menuId="first" contentId="content">
+        <ion-header>
+            <ion-toolbar color="dark">
+                <ion-title style="color: darkgray;">Le BleDor</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-item (click)="openUrl('facebook', 'Light Econ-D', 'https://www.facebook.com/light-econ-d/')">
+                    <img src="../assets/icon/icons8-facebook-96.png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">Notre page FACEBOOK</ion-label>
+                </ion-item>
+                <ion-item (click)="openUrl('instagram', 'Light Econ-D', 'https://www.instagram.com/light-econ-d/')">
+                    <img src="../assets/icon/icons8-instagram-96 (1).png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">Notre page instagram</ion-label>
+                </ion-item>
+                <ion-item (click)="openUrl('twitter', 'Light Econ-D', 'https://www.twitter.com/light-econ-d/')">
+                    <img src="../assets/icon/icons8-twitter-96.png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">Notre page twitter</ion-label>
+                </ion-item>
+                <ion-item (click)="openUrl('PlayStore', 'le blé dor', 'https://play.google.com/store/apps/')">
+                    <img src="../assets/icon/icons8-share-128.png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">Partager l'application</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="warning" style="font-weight:bold;text-align:center">Le Blé D'Or</ion-label>
+                </ion-item>
 
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="acceuil">
-        <ion-icon name="home"></ion-icon>
-        <ion-label style="font-weight:bold">Acceuil</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="produit">
-        <ion-icon name="ellipse"></ion-icon>
-        <ion-label style="font-weight:bold">Produit</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="Panier">
-        <ion-icon name="cart"></ion-icon>
-        <ion-label style="font-weight:bold">Panier</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  
-  </ion-tabs>
-</ion-app> 
+                <ion-item (click)="openUrl('PlayStore', 'le blé dor', 'https://play.google.com/store/apps/')">
+                    <img src="../assets/icon/icons8-gmail-64.png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">Contact</ion-label>
+                </ion-item>
+                <ion-item (click)="openUrl('PlayStore', 'le blé dor', 'https://play.google.com/store/apps/')">
+                    <img src="../assets/icon/icons8-document-96.png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">A propos</ion-label>
+                </ion-item>
+                <ion-item (click)="openUrl('PlayStore', 'le blé dor', 'https://play.google.com/store/apps/')">
+                    <img src="../assets/icon/icons8-power-64.png" alt="" style="height: 50px;width:50px">
+                    <ion-label style="color: darkgray;">Quitter l'application</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="content"></ion-router-outlet>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom" color="dark">
+            <ion-tab-button tab="acceuil" color="dark">
+                <ion-icon name="home"></ion-icon>
+                <ion-label style="font-weight:bold">Acceuil</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="produit" color="dark">
+                <ion-icon name="ellipse"></ion-icon>
+                <ion-label style="font-weight:bold">Produit</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+
+    </ion-tabs>
+</ion-app>
