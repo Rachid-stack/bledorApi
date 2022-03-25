@@ -1,9 +1,11 @@
 import { Component, NgZone } from '@angular/core';
-import { Platform, ToastController,MenuController } from '@ionic/angular';
+import { Platform, ToastController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {CommerceService} from './services/commerce.service';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
+import { InAppBrowser, InAppBrowserObject } from '@ionic-native/in-app-browser/ngx';
+import { AppAvailability } from '@ionic-native/app-availability/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -26,24 +28,26 @@ export class AppComponent {
   static produitBfraiche: Object;
   static produitEau: Object;
   constructor(
-    private platform: Platform,
-    private menu:MenuController,
-    private toastCtrl: ToastController,
-    private router: Router,
-    private zone: NgZone,
-    public http: HttpClient, private commerceService: CommerceService,
+      private appAvailability: AppAvailability,
+      private inAppBrowser: InAppBrowser,
+      private platform: Platform,
+      private menu: MenuController,
+      private toastCtrl: ToastController,
+      private router: Router,
+      private zone: NgZone,
+      public http: HttpClient, private commerceService: CommerceService,
   ) {
     this.initializeApp();
     this.cartItemCount = this.commerceService.getCartItemCount()
   }
-  ngOnInit() { 
-     this.getProduitViennoiserie(); 
+  ngOnInit() {
+     this.getProduitViennoiserie();
      this.getProduitFastFoodCuisine();
      this.getProduitFastFoodSandwish();
      this.getProduitFastFoodBerger();
      this.getProduitFastFoodPizzas();
-      this.getProduitPatisserie();
-       this.getProduitGlacier();
+     this.getProduitPatisserie();
+     this.getProduitGlacier();
      this.getProduitPain();
      this.getProduitPainSpeciaux();
      this.getProduitEau();
@@ -62,6 +66,49 @@ export class AppComponent {
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
+  }
+
+  openUrl(app: string, name: string, fbUrl?: string) {
+    switch (app) {
+      case 'facebook':
+        this.launchApp
+        ('fb://', 'com.facebook.katana', 'fb://facewebmodal/f?href=' + fbUrl, 'https://www.facebook.com/' + name);
+        break;
+      case 'instagram': this.launchApp
+      ('instagram://', 'com.instagram.android', 'instagram://user?username=' + name, 'https://www.instagram.com/' + name);
+        break;
+      case 'twitter':
+        this.launchApp
+        ('twitter://', 'com.twitter.android', 'twitter://user?screen_name=' + name, 'https://twitter.com/' + name);
+        break;
+      case 'PlayStore':
+        this.launchApp
+        ('play.store://', 'com.playstore.android', 'play.store://user?screen_name=' + name,
+            ' https://play.google.com/store/apps/' + name);
+        break;
+      default:
+        break;
+    }
+  }
+
+  private launchApp(iosApp: string, androidApp: string, appUrl: string, webUrl: string) {
+    let app: string;
+    if (this.platform.is('ios')) {
+      app = iosApp;
+    } else if (this.platform.is('android')) {
+      app = androidApp;
+    } else {
+      const browser: InAppBrowserObject = this.inAppBrowser.create(webUrl, '_system');
+      return;
+    }
+    this.appAvailability.check(app).then(
+        () => {
+          const browser: InAppBrowserObject = this.inAppBrowser.create(appUrl, '_system');
+        },
+        () => {
+          const browser: InAppBrowserObject = this.inAppBrowser.create(webUrl, '_system');
+        }
+    );
   }
   initializeApp() {
     this.platform.ready().then(() => {

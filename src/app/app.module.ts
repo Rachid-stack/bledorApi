@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { ProduitComponent } from './produit/produit.component';
+import { DetailProduitComponent } from './detail-produit/detail-produit.component';
 import { PanierComponent } from './panier/panier.component';
 import { ListPatisserieComponent } from './list-patisserie/list-patisserie.component';
 import { ListFastFoodComponent } from './list-fast-food/list-fast-food.component';
@@ -24,13 +25,14 @@ import { Device } from '@ionic-native/device/ngx';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { CommerceService } from './services/commerce.service';
+import { AppAvailability } from '@ionic-native/app-availability/ngx';
 
 @NgModule({
-  declarations: [AppComponent,ListBoulangerieComponent,ListCharcuterieComponent,ListSaladeComponent,ListBoissonComponent,ListFastFoodComponent,ListVienoiserieComponent,ListGlacierComponent,AcceuilComponent,PanierComponent,ProduitComponent, DetailsComponent,ListFastFoodComponent,ListPatisserieComponent],
+  declarations: [AppComponent,ListBoulangerieComponent,ListCharcuterieComponent,ListSaladeComponent,ListBoissonComponent,ListFastFoodComponent,ListVienoiserieComponent,ListGlacierComponent,AcceuilComponent,PanierComponent,ProduitComponent, DetailProduitComponent, DetailsComponent,ListFastFoodComponent,ListPatisserieComponent],
   entryComponents: [],
   imports: [BrowserModule,FormsModule ,IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
-    
+    AppAvailability,
     AndroidPermissions,
     CallNumber,
     Device,
